@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<html dir="ltr">
+<head>
+    <meta charset="utf-8">
+	<meta name="title" content="Apa itu Framework ?"><!-- Meta Tag Start -->
+	<meta name="description" content="Mengenal Lebih dalam Tentang Framework">
+	<meta name="keywords" content="framework, css, hmtl">
+	<meta name="author" content="shayhan sagufta">
+	<meta name="viewport" content="width = device - width, initial scale = 1.0 "> <!-- Meta Tag END -->
+
+    <style> 
+        body {
+          background: linear-gradient(to right, #f44242, #1cb5e0); 
+         font-family: sans-serif;
+     }
+     .main {
+         margin:auto 10%;
+         padding-top: 8%;
+         text-align: center;
+         color: #696969;
+     }
+     h1 {
+         margin-bottom: 40px;
+         font-size: 30px;
+         color: #fff;
+     }
+     #clock > div {
+         border-radius: 5px;
+         background: #ffa500;
+         padding: 20px 20px 10px 20px;
+         color: #fff;
+         display: inline-block;
+     }
+     #clock > div > p {
+         font-size: 16px;
+     }
+     #days, #hours, #minutes, #seconds {
+         padding: 20px;
+         font-size: 20px;
+         background: #fb8e00;
+         display: inline-block;
+         width: 40px;
+     }
+     span.turn {
+         animation: turn 0.7s ease;
+     }
+     @keyframes turn {
+         0% {transform: rotateX(0deg)}
+         100% {transform: rotateX(360deg)}
+     }
+    </style> <!-- CSS END -->
+
+    <script>
+        function animation(span) {
+         span.className = "turn";
+         setTimeout(function () {
+             span.className = ""
+         }, 700);
+     }
+ 
+     function Countdown() {
+   
+         setInterval(function () {
+ 
+            var hari    = document.getElementById("days");
+            var jam     = document.getElementById("hours");
+            var menit   = document.getElementById("minutes");
+            var detik   = document.getElementById("seconds");
+               
+            var deadline    = new Date("Jan 01, 2021 00:00:00");
+            var waktu       = new Date();
+            var distance    = deadline - waktu;
+               
+            var days    = Math.floor((distance / (1000*60*60*24)));
+            var hours   = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+               
+            if (days < 10)
+            {
+               days = '0' + days;
+            }
+            if (hours < 10)
+            {
+               hours = '0' + hours;
+            }
+            if (minutes < 10)
+            {
+               minutes = '0' + minutes;
+            }
+            if (seconds < 10)
+            {
+               seconds = '0' + seconds;
+            }
+ 
+            hari.innerHTML    = days;
+            jam.innerHTML     = hours;
+            menit.innerHTML   = minutes;
+            detik.innerHTML   = seconds;
+            //animation
+            animation(detik);
+            if (seconds == 0) animation(menit);
+            if (minutes == 0) animation(jam);
+            if (hours == 0) animation(hari);
+ 
+         }, 1000);
+     }
+ 
+     Countdown();
+
+     if (Countdown == 0) {
+        document.getElementById("boxes").style.display = "block";
+     }else{
+        document.getElementById("boxes").style.display = "none";
+        ;
+    }
+    </script> <!-- Javascript END -->
+
+
+</head>
+<body>
+ 
+    <div class="main">
+        <h1>Countdown Timer Akhir Tahun</h1>
+        <div id="clock">
+            <div><span id="days"></span><p>Hari</p></div>
+            <div><span id="hours"></span><p>Jam</p></div>
+            <div><span id="minutes"></span><p>Menit</p></div>
+            <div><span id="seconds"></span><p>Detik</p></div>
+        </div>
+    </div>
+ 
+</body>
+</html>
